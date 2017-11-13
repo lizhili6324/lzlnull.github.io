@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="生命不息 学习不止">
+<meta name="description" content="title: android第三方登陆集成date: 2017-11-13 15:37:17 tags:  借助友盟+SDK，我们可以快速给应用或游戏具备国内外多平台分享、第三方登录功能。这里我们使用微博和QQ登录来演示   1、去友盟官网注册帐号并获取appkey   官网：http://www.umeng.com/   2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版 3、把下载到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="android第三方登陆集成">
 <meta property="og:url" content="http://yoursite.com/2017/11/13/android第三方登陆集成/index.html">
 <meta property="og:site_name" content="岑一笑">
-<meta property="og:description" content="生命不息 学习不止">
+<meta property="og:description" content="title: android第三方登陆集成date: 2017-11-13 15:37:17 tags:  借助友盟+SDK，我们可以快速给应用或游戏具备国内外多平台分享、第三方登录功能。这里我们使用微博和QQ登录来演示   1、去友盟官网注册帐号并获取appkey   官网：http://www.umeng.com/   2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版 3、把下载到">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-13T07:37:17.961Z">
+<meta property="og:image" content="http://yoursite.com/2017/11/13/android第三方登陆集成/android第三方登陆集成/clipboard.png">
+<meta property="og:image" content="http://yoursite.com/2017/11/13/android第三方登陆集成/android第三方登陆集成/login.png">
+<meta property="og:updated_time" content="2017-11-13T07:49:55.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="android第三方登陆集成">
-<meta name="twitter:description" content="生命不息 学习不止">
+<meta name="twitter:description" content="title: android第三方登陆集成date: 2017-11-13 15:37:17 tags:  借助友盟+SDK，我们可以快速给应用或游戏具备国内外多平台分享、第三方登录功能。这里我们使用微博和QQ登录来演示   1、去友盟官网注册帐号并获取appkey   官网：http://www.umeng.com/   2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版 3、把下载到">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/13/android第三方登陆集成/android第三方登陆集成/clipboard.png">
 
 
 
@@ -299,7 +302,72 @@
       
 
       
-        
+        <hr>
+<p>title: android第三方登陆集成<br>date: 2017-11-13 15:37:17</p>
+<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><p>  借助友盟+SDK，我们可以快速给应用或游戏具备国内外多平台分享、第三方登录功能。<br>这里我们使用微博和QQ登录来演示  </p>
+<p>1、去友盟官网注册帐号并获取appkey  </p>
+<p>官网：<a href="http://www.umeng.com/" target="_blank" rel="external">http://www.umeng.com/</a>  </p>
+<p>2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版<br><img src="android第三方登陆集成/clipboard.png" alt="image"></p>
+<p>3、把下载到的SDK包解压，使用官方提供的集成工具导入jar和res </p>
+<p>4、在集成工具中点击完成后会生成umeng_integratetool_result文件夹，将这个文件夹复制到你的工程中去</p>
+<p>5、配置Android Manifest XML<br>5.1、添加权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;</span><br><span class="line">    &lt;uses-permission  android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;</span><br><span class="line">    &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;</span><br><span class="line">    &lt;uses-permission 	 	 android:name=&quot;android.permission.ACCESS_LOCATION_EXTRA_COMMANDS&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>5.2注册SDK中需要的Activity  </p>
+<h5 id="QQ精简版："><a href="#QQ精简版：" class="headerlink" title="QQ精简版："></a>QQ精简版：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">           android:name=&quot;com.umeng.qq.tencent.AuthActivity&quot;</span><br><span class="line">           android:launchMode=&quot;singleTask&quot;</span><br><span class="line">           android:noHistory=&quot;true&quot; &gt;</span><br><span class="line"></span><br><span class="line">           &lt;intent-filter&gt;</span><br><span class="line">               &lt;action android:name=&quot;android.intent.action.VIEW&quot; /&gt;</span><br><span class="line">               &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</span><br><span class="line">               &lt;category android:name=&quot;android.intent.category.BROWSABLE&quot; /&gt;</span><br><span class="line">               &lt;data android:scheme=&quot;tencent100424468&quot; /&gt;</span><br><span class="line">           &lt;/intent-filter&gt;</span><br><span class="line">   &lt;/activity&gt;</span><br><span class="line"></span><br><span class="line">   &lt;activity</span><br><span class="line">           android:name=&quot;com.umeng.qq.tencent.AssistActivity&quot;</span><br><span class="line">           android:screenOrientation=&quot;portrait&quot;</span><br><span class="line">           android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;</span><br><span class="line">           android:configChanges=&quot;orientation|keyboardHidden|screenSize&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="新浪精简版"><a href="#新浪精简版" class="headerlink" title="新浪精简版:"></a>新浪精简版:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">            android:name=&quot;com.umeng.socialize.media.WBShareCallBackActivity&quot;</span><br><span class="line">            android:configChanges=&quot;keyboardHidden|orientation&quot;</span><br><span class="line">            android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;</span><br><span class="line">            android:exported=&quot;false&quot;</span><br><span class="line">            android:screenOrientation=&quot;portrait&quot; &gt;</span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line"> &lt;activity android:name=&quot;com.sina.weibo.sdk.web.WeiboSdkWebActivity&quot;</span><br><span class="line">                  android:configChanges=&quot;keyboardHidden|orientation&quot;</span><br><span class="line">                  android:exported=&quot;false&quot;</span><br><span class="line">                  android:windowSoftInputMode=&quot;adjustResize&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/activity&gt;</span><br><span class="line">        &lt;activity</span><br><span class="line">            android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar.Fullscreen&quot;</span><br><span class="line">            android:launchMode=&quot;singleTask&quot;</span><br><span class="line">            android:name=&quot;com.sina.weibo.sdk.share.WbShareTransActivity&quot;&gt;</span><br><span class="line">            &lt;intent-filter&gt;</span><br><span class="line">                &lt;action android:name=&quot;com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY&quot; /&gt;</span><br><span class="line">                &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</span><br><span class="line">            &lt;/intent-filter&gt;</span><br><span class="line"></span><br><span class="line">        &lt;/activity&gt;</span><br></pre></td></tr></table></figure>
+<p>5.3添加友盟appKey<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta-data</span><br><span class="line">           android:name=&quot;UMENG_APPKEY&quot;</span><br><span class="line">           android:value=&quot;561cae6ae0f55abd990035bf&quot; &gt;</span><br><span class="line">   	&lt;/meta-data&gt;</span><br></pre></td></tr></table></figure></p>
+<p>5.4配置第三方平台key，以及初始化SDK </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class App extends Application &#123;</span><br><span class="line">    &#123;   //qq</span><br><span class="line">        PlatformConfig.setQQZone(&quot;100424468&quot;, &quot;c7394704798a158208a74ab60104f0ba&quot;);</span><br><span class="line">        //新浪微博(第三个参数为回调地址)</span><br><span class="line">        PlatformConfig.setSinaWeibo(&quot;3921700954&quot;, &quot;04b48b094faeb16683c32669824ebdad&quot;,&quot;http://sns.whalecloud.com/sina2/callback&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void onCreate() &#123;</span><br><span class="line">        super.onCreate();</span><br><span class="line">        UMShareAPI.get(this);//初始化SDK</span><br><span class="line">    ｝</span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
+<p>5.5在xml中配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> &lt;application</span><br><span class="line">        android:allowBackup=&quot;true&quot;</span><br><span class="line">        android:icon=&quot;@mipmap/ic_launcher&quot;</span><br><span class="line">        android:label=&quot;@string/app_name&quot;</span><br><span class="line">        android:supportsRtl=&quot;true&quot;</span><br><span class="line">        android:name=&quot;.App&quot;</span><br><span class="line">        android:theme=&quot;@style/AppTheme&quot;&gt;</span><br><span class="line">``` </span><br><span class="line">6、在调用第三方登录的地方，进行授权，获取用户信息</span><br></pre></td></tr></table></figure></p>
+<p>UMShareAPI.get(mContext).getPlatformInfo((Activity) mContext, SHARE_MEDIA.QQ, umAuthListener);<br>其中umAuthListener为授权回调，构建如下：<br>uthListener authListener = new UMAuthListener() {<br>        /**</p>
+<pre><code> * @desc 授权开始的回调
+ * @param platform 平台名称
+ */
+@Override
+public void onStart(SHARE_MEDIA platform) {
+
+}
+
+/**
+ * @desc 授权成功的回调
+ * @param platform 平台名称
+ * @param action 行为序号，开发者用不上
+ * @param data 用户资料返回
+ */
+@Override
+public void onComplete(SHARE_MEDIA platform, int action, Map&lt;String, String&gt; data) {
+</code></pre><p>//在此处通过data获取用户信息<br>String name = data.get(“name”);//获取用户昵称<br>              String gender = data.get(“gender”);//获取用户性别<br>             String iconurl = data.get(“iconurl”);//获取用户头像URL</p>
+<pre><code>        Toast.makeText(mContext, &quot;成功了&quot;, Toast.LENGTH_LONG).show();
+
+   }
+
+    /**
+     * @desc 授权失败的回调
+     * @param platform 平台名称
+     * @param action 行为序号，开发者用不上
+     * @param t 错误原因
+     */
+    @Override
+   public void onError(SHARE_MEDIA platform, int action, Throwable t) {
+
+    Toast.makeText(mContext, &quot;失败：&quot; + t.getMessage(),                                  Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * @desc 授权取消的回调
+     * @param platform 平台名称
+     * @param action 行为序号，开发者用不上
+     */
+    @Override
+    public void onCancel(SHARE_MEDIA platform, int action) {
+        Toast.makeText(mContext, &quot;取消了&quot;, Toast.LENGTH_LONG).show();
+    }
+};
+</code></pre><p>```<br>授权成功后，app就可以获取到用户的一些基本信息<br><br><img src="android第三方登陆集成/login.png" alt="image"></p>
+<p>7、 各平台授权回调map对照 </p>
+<h5 id="QQ："><a href="#QQ：" class="headerlink" title="QQ："></a>QQ：<br></h5><p>name：name（6.2以前用screen_name）<br><br>用户id（openid）：uid  <br><br>accesstoken: accessToken （6.2以前用access_token） <br><br>过期时间：expiration （6.2以前用expires_in)<br><br>性别：gender<br><br>头像：iconurl（6.2以前用profile_image_url）<br><br>是否黄钻：is_yellow_year_vip<br><br>黄钻等级：yellow_vip_level<br><br>城市：city<br><br>省份：province<br><br>新浪微博：<br><br>用户id：uid<br><br>accesstoken: accessToken （6.2以前用access_token）<br><br>refreshtoken: （6.2以前用refresh_token）<br><br>过期时间：expiration （6.2以前用expires_in）<br><br>用户名：name（6.2以前用screen_name）<br><br>位置：location<br><br>头像：iconurl（6.2以前用profile_image_url）<br><br>性别：gender<br><br>关注数：followers_count<br><br>好友数：friends_count<br></p>
+<h5 id="微信："><a href="#微信：" class="headerlink" title="微信："></a>微信：<br></h5><p>openid:openid<br><br>unionid:unionid<br><br>accesstoken: accessToken （6.2以前用access_token）<br><br>过期时间：expiration （6.2以前用expires_in）<br><br>name：name（6.2以前用screen_name）<br><br>城市：city<br><br>省份：prvinice<br><br>国家：country<br><br>性别：gender<br><br>头像：iconurl（6.2以前用profile_image_url）<br><br>QQ平台错误码对照：<br><br>110201：未登陆<br><br>110405：登录请求被限制<br><br>110404：请求参数缺少appid<br><br>110401：请求的应用不存在<br><br>110407：应用已经下架<br><br>110406：应用没有通过审核<br><br>100044：未经过安全校验的包名和签名<br><br>110500：获取用户授权信息失败<br><br>110501：获取应用的授权信息失败<br><br>110502：设置用户授权失败<br><br>110503：获取token失败<br><br>110504：系统内部错误<br> </p>
+
       
     </div>
     
@@ -383,8 +451,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -428,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags"><span class="nav-number">1.</span> <span class="nav-text">tags:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#QQ精简版："><span class="nav-number">1.0.0.1.</span> <span class="nav-text">QQ精简版：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#新浪精简版"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">新浪精简版:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#QQ："><span class="nav-number">1.0.0.3.</span> <span class="nav-text">QQ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#微信："><span class="nav-number">1.0.0.4.</span> <span class="nav-text">微信：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
