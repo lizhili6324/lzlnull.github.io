@@ -282,6 +282,133 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/16/用RollPagerView实现图片的轮播/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LZL">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/source/images/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="岑一笑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/16/用RollPagerView实现图片的轮播/" itemprop="url">用RollPagerView实现图片的轮播</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T13:17:00+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>RollViewPager是一个自动轮播的Viewpager，支持无限循环。 触摸时会暂停播放，直到结束触摸一个延迟周期以后继续播放。 看起来就像这样。指示器可以为点可以为数字还可以自定义，位置也可以变。  </p>
+<h6 id="1、使用Android-Studio开发在gradle添加依赖"><a href="#1、使用Android-Studio开发在gradle添加依赖" class="headerlink" title="1、使用Android Studio开发在gradle添加依赖:"></a>1、使用Android Studio开发在gradle添加依赖:</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;compile.jude:rollviewpager:1.4.5&apos;</span><br></pre></td></tr></table></figure>
+<h6 id="2、在布局文件中使用："><a href="#2、在布局文件中使用：" class="headerlink" title="2、在布局文件中使用："></a>2、在布局文件中使用：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.jude.rollviewpager.RollPagerView</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;400dp&quot;</span><br><span class="line">    app:rollviewpager_play_delay=&quot;1500&quot;</span><br><span class="line">    android:id=&quot;@+id/roll_image&quot;</span><br><span class="line">   /&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="3、RollViewPager自定义属性："><a href="#3、RollViewPager自定义属性：" class="headerlink" title="3、RollViewPager自定义属性："></a>3、RollViewPager自定义属性：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app:rollviewpager_play_delay=&quot;3000&quot; 播放间隔时间，单位ms。填0则不播放。默认为0 app:rollviewpager_hint_gravity=&quot;center&quot; 指示器位置,提供left,center,right。默认center</span><br><span class="line">app:rollviewpager_hint_color=&quot;#7c7c7c&quot; 指示器背景颜色.默认黑色</span><br><span class="line">app:rollviewpager_hint_alpha=&quot;80&quot; 指示器背景透明度。0全透明，255不透明。默认0.</span><br><span class="line">app:rollviewpager_hint_paddingLeft=&quot;16dp&quot; 指示器左边距</span><br><span class="line">app:rollviewpager_hint_paddingRight=&quot;16dp&quot; 指示器右边距</span><br><span class="line">app:rollviewpager_hint_paddingTop=&quot;16dp&quot; 指示器上边距</span><br><span class="line">app:rollviewpager_hint_paddingBottom=&quot;16dp&quot; 指示器下边距</span><br><span class="line">注意：要用到RollViewPager自定义属性时，在布局文件中我们必须添加：</span><br><span class="line">xmlns:app=&quot;http://schemas.android.com/apk/res-auto</span><br></pre></td></tr></table></figure>
+<h6 id="4、RollViewPager提供了自定义指示器的类-HintView-用法："><a href="#4、RollViewPager提供了自定义指示器的类-HintView-用法：" class="headerlink" title="4、RollViewPager提供了自定义指示器的类:HintView 用法："></a>4、RollViewPager提供了自定义指示器的类:HintView 用法：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//参数说明:上下文，当前轮播图指示器图片 默认指示器图片</span><br><span class="line">mRollViewPager.setHintView(new   IconHintView(this,R.drawable.point_focus,R.drawable.point_normal));</span><br><span class="line">mRollViewPager.setHintView(new ColorPointHintView(this, Color.YELLOW,Color.WHITE));</span><br><span class="line">mRollViewPager.setHintView(new TextHintView(this));</span><br><span class="line">mRollViewPager.setHintView(null);//隐藏指示器</span><br></pre></td></tr></table></figure>
+<h6 id="5、设置点击事件"><a href="#5、设置点击事件" class="headerlink" title="5、设置点击事件:"></a>5、设置点击事件:</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pagerView.setOnItemClickListener(new OnItemClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onItemClick(int position) &#123;</span><br><span class="line">                Toast.makeText(MainActivity.this,&quot;&quot;+position,Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+<h6 id="6、提供以下三种种方便的PagerAdapter供使用。"><a href="#6、提供以下三种种方便的PagerAdapter供使用。" class="headerlink" title="6、提供以下三种种方便的PagerAdapter供使用。"></a>6、提供以下三种种方便的PagerAdapter供使用。</h6><p>本ViewPager也可以使用其他任意PagerAdapter。<br><strong> StaticPagerAdapter:</strong><br>存储页面的Adapter。view添加进去就存储不会再次getView，减少页面创建消耗，消耗内存。一般自动播放的情况这种方案比较好。不然会大量构造View。 概念参照FragmentPagerAdapter。可以用于其他ViewPager。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class MyPagerAdapter extends StaticPagerAdapter&#123;</span><br><span class="line">    private int[] image = &#123;R.drawable.image1,R.drawable.image2, R.drawable.image3,R.drawable.image4&#125;;</span><br><span class="line">    @Override</span><br><span class="line">    public View getView(ViewGroup container, int position) &#123;</span><br><span class="line">        ImageView imageView = new ImageView(container.getContext());</span><br><span class="line">        imageView.setImageResource(image[position]);</span><br><span class="line">        // 按比例扩大图片的size居中显示，使得图片长(宽)等于或大于View的长(宽)</span><br><span class="line">        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);</span><br><span class="line">        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));</span><br><span class="line">        return imageView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>DynamicPagerAdapter(跟以上Adapter用法一样) </strong><br>动态的Adapter。当创建3号view时会销毁1号view(递推)，会时常调用getView。增加页面创建消耗，减小内存消耗。 概念参照FragmentStatePagerAdapter。可以用于其他ViewPager<br><strong>LoopPagerAdapter</strong><br>无限循环的Adapter。无限循环上采用的是getCount返回int大数的方法(并没有什么缺点,另外估计1s的间隔时间你在有生之年看不到他播放到底)。实测比第N页跳转到第1页的效果好。<br>数据采用StaticPagerAdapter的方案。节省创建View开销。 本Adapter只能用于本RollViewPager;<br>无需其他设置，很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class TestLoopAdapter extends LoopPagerAdapter&#123;</span><br><span class="line">    private int[] image = &#123;R.drawable.image1,R.drawable.image2, R.drawable.image3,R.drawable.image4&#125;;</span><br><span class="line"></span><br><span class="line">    public TestLoopAdapter(RollPagerView viewPager) &#123;</span><br><span class="line">        super(viewPager);</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public View getView(ViewGroup container, int position) &#123;</span><br><span class="line">        ImageView imageView = new ImageView(container.getContext());</span><br><span class="line">        imageView.setImageResource(image[position]);</span><br><span class="line">        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);</span><br><span class="line">        imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));</span><br><span class="line">        return imageView;</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public int getRealCount() &#123;</span><br><span class="line">        return image.length;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">//播放控制  </span><br><span class="line">rollViewPager.pause()</span><br><span class="line">rollViewPager.resume()</span><br><span class="line">rollViewPager.isPlaying()</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/13/android第三方登陆集成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -378,7 +505,7 @@
             <p>  借助友盟+SDK，我们可以快速给应用或游戏具备国内外多平台分享、第三方登录功能。<br>这里我们使用微博和QQ登录来演示  </p>
 <p>1、去友盟官网注册帐号并获取appkey  </p>
 <p>官网：<a href="http://www.umeng.com/" target="_blank" rel="external">http://www.umeng.com/</a>  </p>
-<p>2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版<br><img src="/public/clipboard.png" alt="image"></p>
+<p>2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版<br><img src="http://ozhtdwtcj.bkt.clouddn.com/login_sdk.png" alt="image"></p>
 <p>3、把下载到的SDK包解压，使用官方提供的集成工具导入jar和res </p>
 <p>4、在集成工具中点击完成后会生成umeng_integratetool_result文件夹，将这个文件夹复制到你的工程中去</p>
 <p>5、配置Android Manifest XML<br>5.1、添加权限</p>
@@ -434,7 +561,7 @@ public void onComplete(SHARE_MEDIA platform, int action, Map&lt;String, String&g
         Toast.makeText(mContext, &quot;取消了&quot;, Toast.LENGTH_LONG).show();
     }
 };
-</code></pre><p>```<br>授权成功后，app就可以获取到用户的一些基本信息<br><br><img src="android第三方登陆集成/login.png" alt="image"></p>
+</code></pre><p>```<br>授权成功后，app就可以获取到用户的一些基本信息<br><br><img src="http://ozhtdwtcj.bkt.clouddn.com/login_sucess.png" alt="image"></p>
 <p>7、 各平台授权回调map对照 </p>
 <h5 id="QQ："><a href="#QQ：" class="headerlink" title="QQ："></a>QQ：<br></h5><p>name：name（6.2以前用screen_name）<br><br>用户id（openid）：uid  <br><br>accesstoken: accessToken （6.2以前用access_token） <br><br>过期时间：expiration （6.2以前用expires_in)<br><br>性别：gender<br><br>头像：iconurl（6.2以前用profile_image_url）<br><br>是否黄钻：is_yellow_year_vip<br><br>黄钻等级：yellow_vip_level<br><br>城市：city<br><br>省份：province<br><br>新浪微博：<br><br>用户id：uid<br><br>accesstoken: accessToken （6.2以前用access_token）<br><br>refreshtoken: （6.2以前用refresh_token）<br><br>过期时间：expiration （6.2以前用expires_in）<br><br>用户名：name（6.2以前用screen_name）<br><br>位置：location<br><br>头像：iconurl（6.2以前用profile_image_url）<br><br>性别：gender<br><br>关注数：followers_count<br><br>好友数：friends_count<br></p>
 <h5 id="微信："><a href="#微信：" class="headerlink" title="微信："></a>微信：<br></h5><p>openid:openid<br><br>unionid:unionid<br><br>accesstoken: accessToken （6.2以前用access_token）<br><br>过期时间：expiration （6.2以前用expires_in）<br><br>name：name（6.2以前用screen_name）<br><br>城市：city<br><br>省份：prvinice<br><br>国家：country<br><br>性别：gender<br><br>头像：iconurl（6.2以前用profile_image_url）<br><br>QQ平台错误码对照：<br><br>110201：未登陆<br><br>110405：登录请求被限制<br><br>110404：请求参数缺少appid<br><br>110401：请求的应用不存在<br><br>110407：应用已经下架<br><br>110406：应用没有通过审核<br><br>100044：未经过安全校验的包名和签名<br><br>110500：获取用户授权信息失败<br><br>110501：获取应用的授权信息失败<br><br>110502：设置用户授权失败<br><br>110503：获取token失败<br><br>110504：系统内部错误<br> </p>
@@ -770,7 +897,7 @@ public void onComplete(SHARE_MEDIA platform, int action, Map&lt;String, String&g
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -855,7 +982,7 @@ public void onComplete(SHARE_MEDIA platform, int action, Map&lt;String, String&g
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共1.2k字</span>
+  <span class="post-count">博客全站共2.1k字</span>
 </div>
 
         
