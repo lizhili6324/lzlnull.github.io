@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android开发," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、布局文件DrawerLayout DrawerLayout是android官方提供用用于创建策划菜单的组件，简单好用，这里我们使用android studio快速生成一个侧滑菜单，而且效果还不错，只需简单修改就能应用大多场景。  上面就是用Android Studio生成的效果，由于是自动生成的代码量有点多乱，稍微整理下，方便我们去理解修。   1、DrawerLayout根元素布局：avti">
+<meta name="keywords" content="Android开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Studio官方版DrawerLayout侧滑菜单解析">
+<meta property="og:url" content="http://yoursite.com/2017/12/02/用DrawerLayout制作android侧滑菜单/index.html">
+<meta property="og:site_name" content="岑一笑">
+<meta property="og:description" content="一、布局文件DrawerLayout DrawerLayout是android官方提供用用于创建策划菜单的组件，简单好用，这里我们使用android studio快速生成一个侧滑菜单，而且效果还不错，只需简单修改就能应用大多场景。  上面就是用Android Studio生成的效果，由于是自动生成的代码量有点多乱，稍微整理下，方便我们去理解修。   1、DrawerLayout根元素布局：avti">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ozhvdppba.bkt.clouddn.com/drawerlayout.gif">
+<meta property="og:updated_time" content="2017-12-02T08:34:03.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Studio官方版DrawerLayout侧滑菜单解析">
+<meta name="twitter:description" content="一、布局文件DrawerLayout DrawerLayout是android官方提供用用于创建策划菜单的组件，简单好用，这里我们使用android studio快速生成一个侧滑菜单，而且效果还不错，只需简单修改就能应用大多场景。  上面就是用Android Studio生成的效果，由于是自动生成的代码量有点多乱，稍微整理下，方便我们去理解修。   1、DrawerLayout根元素布局：avti">
+<meta name="twitter:image" content="http://ozhvdppba.bkt.clouddn.com/drawerlayout.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"������ؼ���","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/02/用DrawerLayout制作android侧滑菜单/"/>
+
+
+
+
+
+  <title>Android Studio官方版DrawerLayout侧滑菜单解析 | 岑一笑</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">岑一笑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">lizhili1995@outlook.com</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-board">
+          <a href="/board/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-comments"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/02/用DrawerLayout制作android侧滑菜单/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LZL">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ozhvdppba.bkt.clouddn.com/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="岑一笑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android Studio官方版DrawerLayout侧滑菜单解析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-02T14:51:00+08:00">
+                2017-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、布局文件"><a href="#一、布局文件" class="headerlink" title="一、布局文件"></a>一、布局文件</h4><h6 id="DrawerLayout"><a href="#DrawerLayout" class="headerlink" title="DrawerLayout"></a>DrawerLayout</h6><p> DrawerLayout是android官方提供用用于创建策划菜单的组件，简单好用，这里我们使用android studio快速生成一个侧滑菜单，而且效果还不错，只需简单修改就能应用大多场景。<br> <img src="http://ozhvdppba.bkt.clouddn.com/drawerlayout.gif" alt="image"><br> 上面就是用Android Studio生成的效果，由于是自动生成的代码量有点多乱，稍微整理下，方便我们去理解修。  </p>
+<h6 id="1、DrawerLayout根元素布局：avtivity-main-xml文件"><a href="#1、DrawerLayout根元素布局：avtivity-main-xml文件" class="headerlink" title="1、DrawerLayout根元素布局：avtivity_main.xml文件"></a>1、DrawerLayout根元素布局：avtivity_main.xml文件</h6> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;android.support.v4.widget.DrawerLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:id=&quot;@+id/drawer_layout&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    android:fitsSystemWindows=&quot;true&quot;</span><br><span class="line">    tools:openDrawer=&quot;start&quot;&gt;</span><br><span class="line">	  &lt;!--&lt;include /&gt;标签能够重用布局文件，把其他布局文件作为所在布局的子布局文件 --&gt;</span><br><span class="line">     &lt;!-- include为显示内容区域 --&gt;</span><br><span class="line">    &lt;include</span><br><span class="line">        layout=&quot;@layout/app_bar_main&quot;</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot; /&gt;</span><br><span class="line">		</span><br><span class="line">     &lt;!-- NavigationView为侧边抽屉栏 --&gt;</span><br><span class="line">    &lt;android.support.design.widget.NavigationView</span><br><span class="line">        android:id=&quot;@+id/nav_view&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;match_parent&quot;</span><br><span class="line">        android:layout_gravity=&quot;start&quot;</span><br><span class="line">        android:fitsSystemWindows=&quot;true&quot;</span><br><span class="line">        app:headerLayout=&quot;@layout/nav_header_main&quot;</span><br><span class="line">        app:menu=&quot;@menu/activity_main_drawer&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/android.support.v4.widget.DrawerLayout&gt;</span><br></pre></td></tr></table></figure>
+<p> DrawerLayoutl里面有两个文件include控件为显示主要内容区域，NavigationView是侧边抽屉栏<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、include重要属性：</span><br><span class="line">layout=&quot;@layout/app_bar_main&quot;//设置显示内容区域布局</span><br><span class="line">2、NavigationView 重要属性：</span><br><span class="line">app:headerLayout=&quot;@layout/nav_header_main&quot; //设置侧滑菜单头部布局</span><br><span class="line">app:menu=&quot;@menu/activity_main_drawer&quot;    //设置MenuItem菜单布局</span><br></pre></td></tr></table></figure></p>
+<h5 id="2、headerLayout布局文件代码-nav-header-main-xml"><a href="#2、headerLayout布局文件代码-nav-header-main-xml" class="headerlink" title="2、headerLayout布局文件代码 nav_header_main.xml"></a>2、headerLayout布局文件代码 nav_header_main.xml</h5><p>headerLayout布局文件很简单，和普通布局文件一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;@dimen/nav_header_height&quot;</span><br><span class="line">    android:background=&quot;@drawable/side_nav_bar&quot;</span><br><span class="line">    android:gravity=&quot;bottom&quot;</span><br><span class="line">    android:orientation=&quot;vertical&quot;</span><br><span class="line">    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</span><br><span class="line">    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;</span><br><span class="line">    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;</span><br><span class="line">    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</span><br><span class="line">    android:theme=&quot;@style/ThemeOverlay.AppCompat.Dark&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;ImageView</span><br><span class="line">        android:id=&quot;@+id/imageView&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:paddingTop=&quot;@dimen/nav_header_vertical_spacing&quot;</span><br><span class="line">        app:srcCompat=&quot;@mipmap/ic_launcher_round&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:paddingTop=&quot;@dimen/nav_header_vertical_spacing&quot;</span><br><span class="line">        android:text=&quot;Android Studio&quot;</span><br><span class="line">        android:textAppearance=&quot;@style/TextAppearance.AppCompat.Body1&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:id=&quot;@+id/textView&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;android.studio@android.com&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/LinearLayout&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="3、MenuItem菜单xml文件-activity-main-drawer-xml"><a href="#3、MenuItem菜单xml文件-activity-main-drawer-xml" class="headerlink" title="3、MenuItem菜单xml文件 activity_main_drawer.xml"></a>3、MenuItem菜单xml文件 activity_main_drawer.xml</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    tools:showIn=&quot;navigation_view&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;group android:checkableBehavior=&quot;single&quot;&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/nav_camera&quot;</span><br><span class="line">            android:icon=&quot;@drawable/ic_menu_camera&quot;</span><br><span class="line">            android:title=&quot;Import&quot; /&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/nav_gallery&quot;</span><br><span class="line">            android:icon=&quot;@drawable/ic_menu_gallery&quot;</span><br><span class="line">            android:title=&quot;Gallery&quot; /&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/nav_slideshow&quot;</span><br><span class="line">            android:icon=&quot;@drawable/ic_menu_slideshow&quot;</span><br><span class="line">            android:title=&quot;Slideshow&quot; /&gt;</span><br><span class="line">        &lt;item</span><br><span class="line">            android:id=&quot;@+id/nav_manage&quot;</span><br><span class="line">            android:icon=&quot;@drawable/ic_menu_manage&quot;</span><br><span class="line">            android:title=&quot;Tools&quot; /&gt;</span><br><span class="line">    &lt;/group&gt;</span><br><span class="line"></span><br><span class="line">    &lt;item android:title=&quot;Communicate&quot;&gt;</span><br><span class="line">        &lt;menu&gt;</span><br><span class="line">            &lt;item</span><br><span class="line">                android:id=&quot;@+id/nav_share&quot;</span><br><span class="line">                android:icon=&quot;@drawable/ic_menu_share&quot;</span><br><span class="line">                android:title=&quot;Share&quot; /&gt;</span><br><span class="line">            &lt;item</span><br><span class="line">                android:id=&quot;@+id/nav_send&quot;</span><br><span class="line">                android:icon=&quot;@drawable/ic_menu_send&quot;</span><br><span class="line">                android:title=&quot;Send&quot; /&gt;</span><br><span class="line">        &lt;/menu&gt;</span><br><span class="line">    &lt;/item&gt;</span><br><span class="line"></span><br><span class="line">&lt;/menu&gt;</span><br></pre></td></tr></table></figure>
+<p>该xml文件作用是用于侧滑菜单item项的显示，group android:checkableBehavior=”single”属性为single设置该组为单选</p>
+<h6 id="4、主要内容显示文件-app-bar-main-xml"><a href="#4、主要内容显示文件-app-bar-main-xml" class="headerlink" title="4、主要内容显示文件 app_bar_main.xml"></a>4、主要内容显示文件 app_bar_main.xml</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;android.support.design.widget.CoordinatorLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    tools:context=&quot;dug.cn.myapplication.MainActivity&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.design.widget.AppBarLayout</span><br><span class="line">        android:layout_width=&quot;match_parent&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:theme=&quot;@style/AppTheme.AppBarOverlay&quot;&gt;</span><br><span class="line"></span><br><span class="line">        &lt;android.support.v7.widget.Toolbar</span><br><span class="line">            android:id=&quot;@+id/toolbar&quot;</span><br><span class="line">            android:layout_width=&quot;match_parent&quot;</span><br><span class="line">            android:layout_height=&quot;?attr/actionBarSize&quot;</span><br><span class="line">            android:background=&quot;?attr/colorPrimary&quot;</span><br><span class="line">            app:popupTheme=&quot;@style/AppTheme.PopupOverlay&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/android.support.design.widget.AppBarLayout&gt;</span><br><span class="line"></span><br><span class="line">    &lt;include layout=&quot;@layout/content_main&quot; /&gt;</span><br><span class="line"></span><br><span class="line">    &lt;android.support.design.widget.FloatingActionButton</span><br><span class="line">        android:id=&quot;@+id/fab&quot;</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_gravity=&quot;bottom|end&quot;</span><br><span class="line">        android:layout_margin=&quot;@dimen/fab_margin&quot;</span><br><span class="line">        app:srcCompat=&quot;@android:drawable/ic_dialog_email&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/android.support.design.widget.CoordinatorLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>FloatingActionButton为悬浮按钮控件</p>
+<h6 id="5、content-main-xml中编写，上面的AppBar和一个悬浮按钮"><a href="#5、content-main-xml中编写，上面的AppBar和一个悬浮按钮" class="headerlink" title="5、content_main.xml中编写，上面的AppBar和一个悬浮按钮"></a>5、content_main.xml中编写，上面的AppBar和一个悬浮按钮</h6><p>实际上主要内容布局代码是在content_main.xml中编写，上面app_bar_main.xml中包含了AppBar和一个悬浮按钮</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span><br><span class="line">&lt;android.support.constraint.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</span><br><span class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</span><br><span class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</span><br><span class="line">    android:layout_width=&quot;match_parent&quot;</span><br><span class="line">    android:layout_height=&quot;match_parent&quot;</span><br><span class="line">    app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;</span><br><span class="line">    tools:context=&quot;dug.cn.myapplication.MainActivity&quot;</span><br><span class="line">    tools:showIn=&quot;@layout/app_bar_main&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;TextView</span><br><span class="line">        android:layout_width=&quot;wrap_content&quot;</span><br><span class="line">        android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">        android:text=&quot;Hello World!&quot;</span><br><span class="line">        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;</span><br><span class="line">        app:layout_constraintLeft_toLeftOf=&quot;parent&quot;</span><br><span class="line">        app:layout_constraintRight_toRightOf=&quot;parent&quot;</span><br><span class="line">        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/android.support.constraint.ConstraintLayout&gt;</span><br></pre></td></tr></table></figure>
+<p>在这个布局中，我们可以根据自己的业务需求编写相应的代码。</p>
+<h4 id="二、Java代码"><a href="#二、Java代码" class="headerlink" title="二、Java代码"></a>二、Java代码</h4><h6 id="1、-视图初始化代码"><a href="#1、-视图初始化代码" class="headerlink" title="1、 视图初始化代码"></a>1、 视图初始化代码</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">     super.onCreate(savedInstanceState);</span><br><span class="line">     setContentView(R.layout.activity_main);</span><br><span class="line">     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line">     setSupportActionBar(toolbar);</span><br><span class="line">//设置悬浮按钮的监听事件</span><br><span class="line">     FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);</span><br><span class="line">     fab.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">         @Override</span><br><span class="line">         public void onClick(View view) &#123;</span><br><span class="line">             Snackbar.make(view, &quot;Replace with your own action&quot;, Snackbar.LENGTH_LONG)</span><br><span class="line">                     .setAction(&quot;Action&quot;, null).show();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;);</span><br><span class="line"></span><br><span class="line">     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);</span><br><span class="line">     //创建抽屉的开关，将toolbar和DrawerLayout作为参数传递给它</span><br><span class="line">     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(</span><br><span class="line">             this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);</span><br><span class="line">     //给DrawerLayout设置开关的监听</span><br><span class="line">     drawer.addDrawerListener(toggle);</span><br><span class="line">     //实现toolbar和Drawer的状态</span><br><span class="line">     toggle.syncState();</span><br><span class="line">//设置侧滑菜单item的监听事件</span><br><span class="line">     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);</span><br><span class="line">     navigationView.setNavigationItemSelectedListener(this);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2、侧滑菜单item点击事件"><a href="#2、侧滑菜单item点击事件" class="headerlink" title="2、侧滑菜单item点击事件"></a>2、侧滑菜单item点击事件</h5><p>在下面每个id判断后面写入相应的逻辑就可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public boolean onNavigationItemSelected(MenuItem item) &#123;</span><br><span class="line">       // Handle navigation view item clicks here.</span><br><span class="line">       int id = item.getItemId();</span><br><span class="line"></span><br><span class="line">       if (id == R.id.nav_camera) &#123;</span><br><span class="line">           // Handle the camera action</span><br><span class="line">       &#125; else if (id == R.id.nav_gallery) &#123;</span><br><span class="line"></span><br><span class="line">       &#125; else if (id == R.id.nav_slideshow) &#123;</span><br><span class="line"></span><br><span class="line">       &#125; else if (id == R.id.nav_manage) &#123;</span><br><span class="line"></span><br><span class="line">       &#125; else if (id == R.id.nav_share) &#123;</span><br><span class="line"></span><br><span class="line">       &#125; else if (id == R.id.nav_send) &#123;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);</span><br><span class="line">       drawer.closeDrawer(GravityCompat.START);</span><br><span class="line">       return true;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="3、监听和关闭NavigationView"><a href="#3、监听和关闭NavigationView" class="headerlink" title="3、监听和关闭NavigationView"></a>3、监听和关闭NavigationView</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@SuppressWarnings(&quot;StatementWithEmptyBody&quot;)</span><br><span class="line">@Override</span><br><span class="line">public boolean onNavigationItemSelected(MenuItem item)</span><br><span class="line">&#123;</span><br><span class="line">    // Handle navigation view item clicks here.</span><br><span class="line">    int id = item.getItemId();</span><br><span class="line">    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);</span><br><span class="line">    //每次点击一个item就关闭DrawerLayout</span><br><span class="line">    drawer.closeDrawer(GravityCompat.START);</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当点击返回按钮的时候,如果DrawerLayout是打开状态则关闭<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public void onBackPressed() &#123;</span><br><span class="line">    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);</span><br><span class="line">    if (drawer.isDrawerOpen(GravityCompat.START)) &#123;</span><br><span class="line">        drawer.closeDrawer(GravityCompat.START);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        super.onBackPressed();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="三、MainActivity-java全部代码"><a href="#三、MainActivity-java全部代码" class="headerlink" title="三、MainActivity.java全部代码"></a>三、MainActivity.java全部代码</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">package dug.cn.myapplication;</span><br><span class="line"></span><br><span class="line">import android.os.Bundle;</span><br><span class="line">import android.support.design.widget.FloatingActionButton;</span><br><span class="line">import android.support.design.widget.Snackbar;</span><br><span class="line">import android.view.View;</span><br><span class="line">import android.support.design.widget.NavigationView;</span><br><span class="line">import android.support.v4.view.GravityCompat;</span><br><span class="line">import android.support.v4.widget.DrawerLayout;</span><br><span class="line">import android.support.v7.app.ActionBarDrawerToggle;</span><br><span class="line">import android.support.v7.app.AppCompatActivity;</span><br><span class="line">import android.support.v7.widget.Toolbar;</span><br><span class="line">import android.view.Menu;</span><br><span class="line">import android.view.MenuItem;</span><br><span class="line"></span><br><span class="line">public class MainActivity extends AppCompatActivity</span><br><span class="line">        implements NavigationView.OnNavigationItemSelectedListener &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);</span><br><span class="line">        setSupportActionBar(toolbar);</span><br><span class="line"></span><br><span class="line">        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);</span><br><span class="line">        fab.setOnClickListener(new View.OnClickListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onClick(View view) &#123;</span><br><span class="line">                Snackbar.make(view, &quot;Replace with your own action&quot;, Snackbar.LENGTH_LONG)</span><br><span class="line">                        .setAction(&quot;Action&quot;, null).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);</span><br><span class="line">        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(</span><br><span class="line">                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);</span><br><span class="line">        drawer.addDrawerListener(toggle);</span><br><span class="line">        toggle.syncState();</span><br><span class="line"></span><br><span class="line">        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);</span><br><span class="line">        navigationView.setNavigationItemSelectedListener(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onBackPressed() &#123;</span><br><span class="line">        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);</span><br><span class="line">        if (drawer.isDrawerOpen(GravityCompat.START)) &#123;</span><br><span class="line">            drawer.closeDrawer(GravityCompat.START);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            super.onBackPressed();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean onCreateOptionsMenu(Menu menu) &#123;</span><br><span class="line">        // Inflate the menu; this adds items to the action bar if it is present.</span><br><span class="line">        getMenuInflater().inflate(R.menu.main, menu);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean onOptionsItemSelected(MenuItem item) &#123;</span><br><span class="line">        // Handle action bar item clicks here. The action bar will</span><br><span class="line">        // automatically handle clicks on the Home/Up button, so long</span><br><span class="line">        // as you specify a parent activity in AndroidManifest.xml.</span><br><span class="line">        int id = item.getItemId();</span><br><span class="line"></span><br><span class="line">        //noinspection SimplifiableIfStatement</span><br><span class="line">        if (id == R.id.action_settings) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return super.onOptionsItemSelected(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @SuppressWarnings(&quot;StatementWithEmptyBody&quot;)</span><br><span class="line">    @Override</span><br><span class="line">    public boolean onNavigationItemSelected(MenuItem item) &#123;</span><br><span class="line">        // Handle navigation view item clicks here.</span><br><span class="line">        int id = item.getItemId();</span><br><span class="line"></span><br><span class="line">        if (id == R.id.nav_camera) &#123;</span><br><span class="line">            // Handle the camera action</span><br><span class="line">        &#125; else if (id == R.id.nav_gallery) &#123;</span><br><span class="line"></span><br><span class="line">        &#125; else if (id == R.id.nav_slideshow) &#123;</span><br><span class="line"></span><br><span class="line">        &#125; else if (id == R.id.nav_manage) &#123;</span><br><span class="line"></span><br><span class="line">        &#125; else if (id == R.id.nav_share) &#123;</span><br><span class="line"></span><br><span class="line">        &#125; else if (id == R.id.nav_send) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);</span><br><span class="line">        drawer.closeDrawer(GravityCompat.START);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android开发/" rel="tag"># Android开发</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/17/Can-t-create-handler-inside-thread-that-has-not-called-Looper-prepare/" rel="next" title="近期开发过程中遇到的一些问题">
+                <i class="fa fa-chevron-left"></i> 近期开发过程中遇到的一些问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ozhvdppba.bkt.clouddn.com/head.png"
+                alt="LZL" />
+            
+              <p class="site-author-name" itemprop="name">LZL</p>
+              <p class="site-description motion-element" itemprop="description">生命不息 学习不止</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、布局文件"><span class="nav-number">1.</span> <span class="nav-text">一、布局文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#DrawerLayout"><span class="nav-number">1.0.1.</span> <span class="nav-text">DrawerLayout</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1、DrawerLayout根元素布局：avtivity-main-xml文件"><span class="nav-number">1.0.2.</span> <span class="nav-text">1、DrawerLayout根元素布局：avtivity_main.xml文件</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、headerLayout布局文件代码-nav-header-main-xml"><span class="nav-number">1.1.</span> <span class="nav-text">2、headerLayout布局文件代码 nav_header_main.xml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、MenuItem菜单xml文件-activity-main-drawer-xml"><span class="nav-number">1.2.</span> <span class="nav-text">3、MenuItem菜单xml文件 activity_main_drawer.xml</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4、主要内容显示文件-app-bar-main-xml"><span class="nav-number">1.2.1.</span> <span class="nav-text">4、主要内容显示文件 app_bar_main.xml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5、content-main-xml中编写，上面的AppBar和一个悬浮按钮"><span class="nav-number">1.2.2.</span> <span class="nav-text">5、content_main.xml中编写，上面的AppBar和一个悬浮按钮</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、Java代码"><span class="nav-number">2.</span> <span class="nav-text">二、Java代码</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、-视图初始化代码"><span class="nav-number">2.0.1.</span> <span class="nav-text">1、 视图初始化代码</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、侧滑菜单item点击事件"><span class="nav-number">2.1.</span> <span class="nav-text">2、侧滑菜单item点击事件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、监听和关闭NavigationView"><span class="nav-number">2.2.</span> <span class="nav-text">3、监听和关闭NavigationView</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三、MainActivity-java全部代码"><span class="nav-number">2.3.</span> <span class="nav-text">三、MainActivity.java全部代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LZL</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共4.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.3"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
