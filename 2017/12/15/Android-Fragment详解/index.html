@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="IPV6,Android网络开发," />
 
 
 
@@ -79,17 +79,26 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="随着互联网的发展，以及物联网的大规模应用，IPV4很快就不能满足我们的要求，从IPV4过度到IPv6迫在眉睫，2016年6月1日，苹果要求上架的app必须全面支持IPV6，这一决定，让广大IOS开发者开始了ipv6的研究，但Android方面，无论是国内还是国外，关于android IPV6开发的资料很少，在网上一查，很多还是android接入IPV6的问题，只能自己先搭建个环境测试一下。 一、测">
+<meta name="keywords" content="IPV6,Android网络开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/11/11/hello-world/index.html">
+<meta property="og:title" content="Android开发：初探IPV6">
+<meta property="og:url" content="http://yoursite.com/2017/12/15/Android-Fragment详解/index.html">
 <meta property="og:site_name" content="岑一笑">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="随着互联网的发展，以及物联网的大规模应用，IPV4很快就不能满足我们的要求，从IPV4过度到IPv6迫在眉睫，2016年6月1日，苹果要求上架的app必须全面支持IPV6，这一决定，让广大IOS开发者开始了ipv6的研究，但Android方面，无论是国内还是国外，关于android IPV6开发的资料很少，在网上一查，很多还是android接入IPV6的问题，只能自己先搭建个环境测试一下。 一、测">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-11T14:01:54.449Z">
+<meta property="og:image" content="http://ozhtdwtcj.bkt.clouddn.com/net.png">
+<meta property="og:image" content="http://ozhtdwtcj.bkt.clouddn.com/pc_ip.png">
+<meta property="og:image" content="http://ozhtdwtcj.bkt.clouddn.com/android_ip.png">
+<meta property="og:image" content="http://ozhtdwtcj.bkt.clouddn.com/ping.png">
+<meta property="og:image" content="http://ozhtdwtcj.bkt.clouddn.com/ipv6_test_1.png">
+<meta property="og:image" content="http://ozhtdwtcj.bkt.clouddn.com/ipv6_test_2.png">
+<meta property="og:image" content="http://ozhtdwtcj.bkt.clouddn.com/test_result.png">
+<meta property="og:updated_time" content="2017-12-21T05:41:36.405Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Android开发：初探IPV6">
+<meta name="twitter:description" content="随着互联网的发展，以及物联网的大规模应用，IPV4很快就不能满足我们的要求，从IPV4过度到IPv6迫在眉睫，2016年6月1日，苹果要求上架的app必须全面支持IPV6，这一决定，让广大IOS开发者开始了ipv6的研究，但Android方面，无论是国内还是国外，关于android IPV6开发的资料很少，在网上一查，很多还是android接入IPV6的问题，只能自己先搭建个环境测试一下。 一、测">
+<meta name="twitter:image" content="http://ozhtdwtcj.bkt.clouddn.com/net.png">
 
 
 
@@ -119,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/11/11/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/15/Android-Fragment详解/"/>
 
 
 
 
 
-  <title>Hello World | 岑一笑</title>
+  <title>Android开发：初探IPV6 | 岑一笑</title>
   
 
 
@@ -310,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/11/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/Android-Fragment详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="LZL">
@@ -327,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Android开发：初探IPV6</h1>
         
 
         <div class="post-meta">
@@ -339,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-11T22:01:54+08:00">
-                2017-11-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T22:57:00+08:00">
+                2017-12-15
               </time>
             
 
@@ -349,6 +358,39 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android开发/Android网络开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android网络开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -377,15 +419,14 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>随着互联网的发展，以及物联网的大规模应用，IPV4很快就不能满足我们的要求，从IPV4过度到IPv6迫在眉睫，2016年6月1日，苹果要求上架的app必须全面支持IPV6，这一决定，让广大IOS开发者开始了ipv6的研究，但Android方面，无论是国内还是国外，关于android IPV6开发的资料很少，在网上一查，很多还是android接入IPV6的问题，只能自己先搭建个环境测试一下。</p>
+<h5 id="一、测试环境搭建"><a href="#一、测试环境搭建" class="headerlink" title="一、测试环境搭建"></a>一、测试环境搭建</h5><p>由于目前中国的IPV6还处于研究阶段，只有教育网才能使用，但最近由于某些众所周知的原因，学校的IPV6给关闭了，只能先用路由器搭建个IPV6的局域网进行测试，笔者路由器刷的是华为的固件，在IPV6内网设置中，如果设置为DHCP IPV6，IP LAN获取不到IP地址，所以占时只能利用路由器搭建一个V6的局域网。<br><img src="http://ozhtdwtcj.bkt.clouddn.com/net.png" alt="image"></p>
+<p><center>当路由器配置好后，电脑和手机都连接到这个网络，电脑和手机都能获取到IPV6的地址<br><img src="http://ozhtdwtcj.bkt.clouddn.com/pc_ip.png" alt="image"><br>Android设备<br><img src="http://ozhtdwtcj.bkt.clouddn.com/android_ip.png" alt="image"><br>在PC上进行PING测试，能PING通手机<br><img src="http://ozhtdwtcj.bkt.clouddn.com/ping.png" alt="image"><br></center></p>
+<h5 id="二、准备测试程序"><a href="#二、准备测试程序" class="headerlink" title="二、准备测试程序"></a>二、准备测试程序</h5><p>这里我们准备通过android设备访问IPv6 web项目，看是否能够直接连通。<br>1、新建一个WEB项目，测试用IPV6地址能否访问，这里需要注意的是IPV6访问项目时，浏览器会直接百度你输入的连接，而不是直接去访问这个地址，经过一翻百度，原来需要在访问的地址前加[]  </p>
+<p><center><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TOMCAT访问格式：http://[IPV6地址]:8080/ipv6test/  </span><br><span class="line">::1为IPV6回环地址</span><br></pre></td></tr></table></figure></center></p>
+<p><br><img src="http://ozhtdwtcj.bkt.clouddn.com/ipv6_test_1.png" alt="image"><br>2、android程序编写<br>本例采用OkHttp进行网络请求<br>测试部分代码：<br>和普通网络请求并没有多大区别，只是将IP地址写成了项目IPV6的地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">HttpUtils.getAsync(&quot;http://[2001:da8:6004:50a3::104c]:8080/ipv6test/&quot;, new Callback() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void onFailure(Call call, IOException e) &#123;</span><br><span class="line">        System.out.println(&quot;网络请求失败&quot;);</span><br><span class="line">        System.out.println(e);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void onResponse(Call call, Response response) throws IOException &#123;</span><br><span class="line">        byte[] ipv6byt = response.body().bytes();</span><br><span class="line">        System.out.println(&quot;请求成功&quot;);</span><br><span class="line">        String ipv6Str = new String(ipv6byt); </span><br><span class="line">        System.out.println(ipv6Str);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>测试结果： </p>
+<p><center><br>Android浏览器访问Web项目<br><img src="http://ozhtdwtcj.bkt.clouddn.com/ipv6_test_2.png" alt="image"><br>Android App访问IPv6web项目:<br><img src="http://ozhtdwtcj.bkt.clouddn.com/test_result.png" alt="image"><br></center><br>经测试，Android应用app支持IPV6只需要将项目的地址改成IPV6即可，不需要进行更多的编写，这里笔者只是一个初步的测试，关于IPV6更多的应用还需要花更多的时间与精力。</p>
 
       
     </div>
@@ -401,6 +442,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/IPV6/" rel="tag"># IPV6</a>
+          
+            <a href="/tags/Android网络开发/" rel="tag"># Android网络开发</a>
+          
+        </div>
+      
 
       
       
@@ -410,15 +459,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/02/用DrawerLayout制作android侧滑菜单/" rel="next" title="Android Studio官方版DrawerLayout侧滑菜单解析">
+                <i class="fa fa-chevron-left"></i> Android Studio官方版DrawerLayout侧滑菜单解析
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/11/12/blog/" rel="prev" title="blog">
-                blog <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -562,7 +611,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、测试环境搭建"><span class="nav-number">1.</span> <span class="nav-text">一、测试环境搭建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二、准备测试程序"><span class="nav-number">2.</span> <span class="nav-text">二、准备测试程序</span></a></li></ol></div>
             
 
           </div>
