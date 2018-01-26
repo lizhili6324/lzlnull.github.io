@@ -403,7 +403,7 @@
       
         
           
-            <h4 id="一、GreenDao"><a href="#一、GreenDao" class="headerlink" title="一、GreenDao"></a>一、GreenDao</h4><h5 id="1GreenDAO简介"><a href="#1GreenDAO简介" class="headerlink" title="1GreenDAO简介"></a>1GreenDAO简介</h5><p>在Android开发中，数据持久化一般有Preferences，文件I/O，SQLite数据库，复杂的数据就只能存储到SQLite中，虽然android官方提供了大量的API，但使用起来也不是那么方便，使用优秀的框架能大大的节省我们的开发时间，GreenDAO(Data Access Object是指数据访问接口，即提供了数据库操作一些API接口，可通过DAO进行增删改查操作) 是一个将对象映射到 SQLite 数据库中的轻量且快速的 ORM（object relational mapping） 解决方案，与OrmLite、ActiveOrm、LitePal等框架相比，单位时间内可以插入、更新和查询更多的数据，而且提供了大量的灵活通用接口。<br><img src="http://greenrobot.org/wordpress/wp-content/uploads/greenDAO-orm-320.png" alt="image"></p>
+            <h4 id="一、GreenDao"><a href="#一、GreenDao" class="headerlink" title="一、GreenDao"></a>一、GreenDao</h4><h5 id="1、GreenDAO简介"><a href="#1、GreenDAO简介" class="headerlink" title="1、GreenDAO简介"></a>1、GreenDAO简介</h5><p>在Android开发中，数据持久化一般有Preferences，文件I/O，SQLite数据库，复杂的数据就只能存储到SQLite中，虽然android官方提供了大量的API，但使用起来也不是那么方便，使用优秀的框架能大大的节省我们的开发时间，GreenDAO(Data Access Object是指数据访问接口，即提供了数据库操作一些API接口，可通过DAO进行增删改查操作) 是一个将对象映射到 SQLite 数据库中的轻量且快速的 ORM（object relational mapping） 解决方案，与OrmLite、ActiveOrm、LitePal等框架相比，单位时间内可以插入、更新和查询更多的数据，而且提供了大量的灵活通用接口。<br><img src="http://greenrobot.org/wordpress/wp-content/uploads/greenDAO-orm-320.png" alt="image"></p>
 <h5 id="2、GreenDAO的优点"><a href="#2、GreenDAO的优点" class="headerlink" title="2、GreenDAO的优点"></a>2、GreenDAO的优点</h5><ol>
 <li><p>一个精简的库</p>
 </li>
@@ -438,9 +438,9 @@
 <li>@NotNull：属性不能为空</li>
 <li>@Transient：使用该注释的属性不会被存入数据库的字段中</li>
 <li>@Unique：该属性值必须在数据库中是唯一值</li>
-<li>@Generated：编译后自动生成的构造函数、方法等的注释，提示构造函数、方法等不能被修改<h5 id="3、在Application中初始化数据库"><a href="#3、在Application中初始化数据库" class="headerlink" title="3、在Application中初始化数据库"></a>3、在Application中初始化数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initDB() &#123;</span><br><span class="line">    //创建数据库,参数列表(上下文，数据库名，游标工厂)</span><br><span class="line">    DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(instance,&quot;course.db&quot;,null);</span><br><span class="line">    //获取可写数据库</span><br><span class="line">    SQLiteDatabase db = helper.getWritableDatabase();</span><br><span class="line">    //获取数据库对象</span><br><span class="line">    DaoMaster daoMaster = new DaoMaster(db);</span><br><span class="line">    //获取Dao对象管理者</span><br><span class="line">    daoSession = daoMaster.newSession();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>@Generated：编译后自动生成的构造函数、方法等的注释，提示构造函数、方法等不能被修改</li>
 </ul>
+<h5 id="3、在Application中初始化数据库"><a href="#3、在Application中初始化数据库" class="headerlink" title="3、在Application中初始化数据库"></a>3、在Application中初始化数据库</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private void initDB() &#123;</span><br><span class="line">    //创建数据库,参数列表(上下文，数据库名，游标工厂)</span><br><span class="line">    DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(instance,&quot;course.db&quot;,null);</span><br><span class="line">    //获取可写数据库</span><br><span class="line">    SQLiteDatabase db = helper.getWritableDatabase();</span><br><span class="line">    //获取数据库对象</span><br><span class="line">    DaoMaster daoMaster = new DaoMaster(db);</span><br><span class="line">    //获取Dao对象管理者</span><br><span class="line">    daoSession = daoMaster.newSession();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在我们的app启动后，利用GreenDAO，几行代码就能将数据库创建成功，而不用去写sql,大大的加快了我们的开发速度。</p>
 <h4 id="四、GreenDAO的增删改查"><a href="#四、GreenDAO的增删改查" class="headerlink" title="四、GreenDAO的增删改查"></a>四、GreenDAO的增删改查</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class CourseDAO &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 更新数据</span><br><span class="line">     * @param courseBean</span><br><span class="line">     */</span><br><span class="line">    public static void insertCourse(CourseBean courseBean) &#123;</span><br><span class="line"></span><br><span class="line">        BaseApplicatiom.getDaoInstant().getCourseBeanDao().insert(courseBean);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 删除数据</span><br><span class="line">     * @param id</span><br><span class="line">     */</span><br><span class="line">    public static void deleteCourse(Long id) &#123;</span><br><span class="line"></span><br><span class="line">        BaseApplicatiom.getDaoInstant().getCourseBeanDao().deleteByKey(id);</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * 按节次查询课程</span><br><span class="line">     */</span><br><span class="line">    public static List&lt;CourseBean&gt; queryCourse(String condition)&#123;</span><br><span class="line"></span><br><span class="line">        return  BaseApplicatiom.getDaoInstant().getCourseBeanDao().queryBuilder().where(CourseBeanDao.Properties.CourseTime.like(condition)).list();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * 查询全部数据</span><br><span class="line">     */</span><br><span class="line">    public static  List&lt;CourseBean&gt; queryAll()&#123;</span><br><span class="line"></span><br><span class="line">        return BaseApplicatiom.getDaoInstant().getCourseBeanDao().loadAll();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h5 id="1、增"><a href="#1、增" class="headerlink" title="1、增"></a>1、增</h5><ul>
@@ -590,8 +590,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android开发/" itemprop="url" rel="index">
-                    <span itemprop="name">android开发</span>
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
                   </a>
                 </span>
 
@@ -1061,6 +1061,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -1202,8 +1224,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android开发/" itemprop="url" rel="index">
-                    <span itemprop="name">android开发</span>
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
                   </a>
                 </span>
 
@@ -1351,8 +1373,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android开发/" itemprop="url" rel="index">
-                    <span itemprop="name">android开发</span>
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
                   </a>
                 </span>
 
@@ -1391,12 +1413,9 @@
         
           
             <p>借助友盟+SDK，我们可以快速给应用或游戏具备国内外多平台分享、第三方登录功能。<br>这里我们使用微博和QQ登录来演示  </p>
-<p>1、去友盟官网注册帐号并获取appkey  </p>
-<p>官网：<a href="http://www.umeng.com/" target="_blank" rel="external">http://www.umeng.com/</a>  </p>
-<p>2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版<br><img src="http://ozhtdwtcj.bkt.clouddn.com/login_sdk.png" alt="image"></p>
-<p>3、把下载到的SDK包解压，使用官方提供的集成工具导入jar和res </p>
-<p>4、在集成工具中点击完成后会生成umeng_integratetool_result文件夹，将这个文件夹复制到你的工程中去</p>
-<p>5、配置Android Manifest XML<br>5.1、添加权限</p>
+<h6 id="1、去友盟官网注册帐号并获取appkey"><a href="#1、去友盟官网注册帐号并获取appkey" class="headerlink" title="1、去友盟官网注册帐号并获取appkey"></a>1、去友盟官网注册帐号并获取appkey</h6><p>官网：<a href="http://www.umeng.com/" target="_blank" rel="external">http://www.umeng.com/</a>  </p>
+<h6 id="2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版"><a href="#2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版" class="headerlink" title="2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版"></a>2、根据自己的需求下载SDK，这里我们下载QQ和微博精简版</h6><p><img src="http://ozhtdwtcj.bkt.clouddn.com/login_sdk.png" alt="image"></p>
+<h6 id="3、把下载到的SDK包解压，使用官方提供的集成工具导入jar和res"><a href="#3、把下载到的SDK包解压，使用官方提供的集成工具导入jar和res" class="headerlink" title="3、把下载到的SDK包解压，使用官方提供的集成工具导入jar和res"></a>3、把下载到的SDK包解压，使用官方提供的集成工具导入jar和res</h6><h6 id="4、在集成工具中点击完成后会生成umeng-integratetool-result文件夹，将这个文件夹复制到你的工程中去"><a href="#4、在集成工具中点击完成后会生成umeng-integratetool-result文件夹，将这个文件夹复制到你的工程中去" class="headerlink" title="4、在集成工具中点击完成后会生成umeng_integratetool_result文件夹，将这个文件夹复制到你的工程中去"></a>4、在集成工具中点击完成后会生成umeng_integratetool_result文件夹，将这个文件夹复制到你的工程中去</h6><h6 id="5、配置Android-Manifest-XML"><a href="#5、配置Android-Manifest-XML" class="headerlink" title="5、配置Android Manifest XML"></a>5、配置Android Manifest XML</h6><p>5.1、添加权限</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot; /&gt;</span><br><span class="line">   &lt;uses-permission  android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot;/&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;</span><br><span class="line">   &lt;uses-permission android:name=&quot;android.permission.ACCESS_LOCATION_EXTRA_COMMANDS&quot; /&gt;</span><br></pre></td></tr></table></figure>
 <p>5.2注册SDK中需要的Activity  </p>
 <h5 id="QQ精简版："><a href="#QQ精简版：" class="headerlink" title="QQ精简版："></a>QQ精简版：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;activity</span><br><span class="line">           android:name=&quot;com.umeng.qq.tencent.AuthActivity&quot;</span><br><span class="line">           android:launchMode=&quot;singleTask&quot;</span><br><span class="line">           android:noHistory=&quot;true&quot; &gt;</span><br><span class="line"></span><br><span class="line">           &lt;intent-filter&gt;</span><br><span class="line">               &lt;action android:name=&quot;android.intent.action.VIEW&quot; /&gt;</span><br><span class="line">               &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;</span><br><span class="line">               &lt;category android:name=&quot;android.intent.category.BROWSABLE&quot; /&gt;</span><br><span class="line">               &lt;data android:scheme=&quot;tencent100424468&quot; /&gt;</span><br><span class="line">           &lt;/intent-filter&gt;</span><br><span class="line">   &lt;/activity&gt;</span><br><span class="line"></span><br><span class="line">   &lt;activity</span><br><span class="line">           android:name=&quot;com.umeng.qq.tencent.AssistActivity&quot;</span><br><span class="line">           android:screenOrientation=&quot;portrait&quot;</span><br><span class="line">           android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;</span><br><span class="line">           android:configChanges=&quot;orientation|keyboardHidden|screenSize&quot;/&gt;</span><br></pre></td></tr></table></figure>
@@ -1560,7 +1579,7 @@ public void onComplete(SHARE_MEDIA platform, int action, Map&lt;String, String&g
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
