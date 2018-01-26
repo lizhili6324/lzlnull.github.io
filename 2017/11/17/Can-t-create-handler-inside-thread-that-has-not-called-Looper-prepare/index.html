@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="岑一笑">
 <meta property="og:description" content="1、程序报错Can’t create handler inside thread that has not called Looper.prepare()产生原因：我在短信验证模块中，当短信验证失败时，将在子线程中使用toast提示错误信息，当短信验证失败程序运行到toast时，程序直接挂掉。       分析：提示缺少Looper，尝试给该线程添加一个Looper解决方法：在toast前后添加L">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-18T05:00:22.208Z">
+<meta property="og:updated_time" content="2018-01-26T08:32:39.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="近期开发过程中遇到的一些问题">
 <meta name="twitter:description" content="1、程序报错Can’t create handler inside thread that has not called Looper.prepare()产生原因：我在短信验证模块中，当短信验证失败时，将在子线程中使用toast提示错误信息，当短信验证失败程序运行到toast时，程序直接挂掉。       分析：提示缺少Looper，尝试给该线程添加一个Looper解决方法：在toast前后添加L">
@@ -383,9 +383,11 @@
 <p>相关扩展（深入了解Looper）：<a href="http://blog.csdn.net/heng615975867/article/details/9194219" target="_blank" rel="external">http://blog.csdn.net/heng615975867/article/details/9194219</a>  </p>
 <h6 id="2、Activity和Fragment的交互"><a href="#2、Activity和Fragment的交互" class="headerlink" title="2、Activity和Fragment的交互"></a>2、Activity和Fragment的交互</h6><p>需求：当注册（fragment中）成功后，需要跳转到登录（fragment中），跳转方法在Activity，使用下面的方法可以解决。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ThreadUtils.runInUIThread(new Runnable() &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line"></span><br><span class="line">        ((MainActivity)getActivity()).isSelect(1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 <p>相关扩展（Activity和Fragment的几种交互方式）<a href="http://blog.csdn.net/gaolei1201/article/details/44037831" target="_blank" rel="external">http://blog.csdn.net/gaolei1201/article/details/44037831</a></p>
-<h6 id="3、RecyclerView-item之间增加间距"><a href="#3、RecyclerView-item之间增加间距" class="headerlink" title="3、RecyclerView item之间增加间距"></a>3、RecyclerView item之间增加间距</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class SpaceItemDecoration extends RecyclerView.ItemDecoration &#123;</span><br><span class="line">        int mSpace;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) &#123;</span><br><span class="line">            super.getItemOffsets(outRect,view,parent,state);</span><br><span class="line">            outRect.top = mSpace;</span><br><span class="line">            //此处可以添加上下左右的间距</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        public SpaceItemDecoration(int space)&#123;</span><br><span class="line">            this.mSpace =space;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h6 id="3、RecyclerView-item之间增加间距"><a href="#3、RecyclerView-item之间增加间距" class="headerlink" title="3、RecyclerView item之间增加间距"></a>3、RecyclerView item之间增加间距</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class SpaceItemDecoration extends RecyclerView.ItemDecoration &#123;</span><br><span class="line">        int mSpace;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) &#123;</span><br><span class="line">            super.getItemOffsets(outRect,view,parent,state);</span><br><span class="line">            outRect.top = mSpace;</span><br><span class="line">            //此处可以添加上下左右的间距</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        public SpaceItemDecoration(int space)&#123;</span><br><span class="line">            this.mSpace =space;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">  然后给 recyclerView添加以下语句    </span><br><span class="line">   ` recyclerView.addItemDecoration(new SpaceItemDecoration(8));`</span><br><span class="line">   </span><br><span class="line">  ###### 4、AndroidStudio更新到3.0后，发现之前项目的butter knife报错</span><br><span class="line">错误信息：</span><br><span class="line">Error:Execution failed for task &apos;:app:javaPreCompileDebug&apos;.  </span><br><span class="line"> Annotation processors must be explicitly declared now.  The following dependencies on the compile classpath are found to contain annotation processor.  Please add them to the annotationProcessor configuration.</span><br><span class="line">     butterknife-7.0.1.jar</span><br><span class="line">  Alternatively, set android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true to continue with previous behavior.  Note that this option is deprecated and will be removed in the future.  </span><br><span class="line">解决方案：在module中的build.gradle中添加如下配置</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>  然后给 recyclerView添加以下语句<br>   <code>recyclerView.addItemDecoration(new SpaceItemDecoration(8));</code></p>
+<p>android {<br>    …<br>    defaultConfig {<br>        …<br>        //添加如下配置<br>        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }<br>    }<br>    …<br>}<br>```</p>
+<h6 id="5、使用控件版本不同报错"><a href="#5、使用控件版本不同报错" class="headerlink" title="5、使用控件版本不同报错"></a>5、使用控件版本不同报错</h6><p>错误信息:java.lang.NoSuchMethodError: No static method getMatrix(Landroid/view/View;)<br>解决方案:将版本号改为一致即可</p>
+<h6 id="6、GreenDAO数据库升级报错"><a href="#6、GreenDAO数据库升级报错" class="headerlink" title="6、GreenDAO数据库升级报错"></a>6、GreenDAO数据库升级报错</h6><p>错误信息:Error:Execution failed for task ‘:app:greendao’.<br> Constructor (see CourseBean:23) has been changed after generation.<br>  Please either mark it with @Keep annotation instead of @Generated to keep it untouched,<br>  or use @Generated (without hash) to allow to replace it.<br>解决方案：将构造函数的注释改成keep 或者去掉@Generated的hash值即可</p>
 
       
     </div>
@@ -517,7 +519,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -539,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -574,7 +576,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、程序报错Can’t-create-handler-inside-thread-that-has-not-called-Looper-prepare"><span class="nav-number">1.</span> <span class="nav-text">1、程序报错Can’t create handler inside thread that has not called Looper.prepare()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、Activity和Fragment的交互"><span class="nav-number">2.</span> <span class="nav-text">2、Activity和Fragment的交互</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、RecyclerView-item之间增加间距"><span class="nav-number">3.</span> <span class="nav-text">3、RecyclerView item之间增加间距</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、程序报错Can’t-create-handler-inside-thread-that-has-not-called-Looper-prepare"><span class="nav-number">1.</span> <span class="nav-text">1、程序报错Can’t create handler inside thread that has not called Looper.prepare()</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、Activity和Fragment的交互"><span class="nav-number">2.</span> <span class="nav-text">2、Activity和Fragment的交互</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、RecyclerView-item之间增加间距"><span class="nav-number">3.</span> <span class="nav-text">3、RecyclerView item之间增加间距</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5、使用控件版本不同报错"><span class="nav-number">4.</span> <span class="nav-text">5、使用控件版本不同报错</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6、GreenDAO数据库升级报错"><span class="nav-number">5.</span> <span class="nav-text">6、GreenDAO数据库升级报错</span></a></li></ol></div>
             
 
           </div>
@@ -618,7 +620,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共6.6k字</span>
+  <span class="post-count">博客全站共8.1k字</span>
 </div>
 
         
