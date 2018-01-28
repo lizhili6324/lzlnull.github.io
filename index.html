@@ -310,6 +310,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/28/Android-时间选择器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LZL">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ozhvdppba.bkt.clouddn.com/head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="岑一笑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/28/Android-时间选择器/" itemprop="url">Android 时间选择器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-28T15:34:00+08:00">
+                2018-01-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android开发/" itemprop="url" rel="index">
+                    <span itemprop="name">Android开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近项目要用到时间选择器，Android自身的不是滚动的，而且国内的Andriod的手机UI五花八门，弹出的样式也不好看，所以只有走自定义这条路线，在网上看到一个很不错的Demo，效果很不错，拿来修改下，感觉大多项目都可以用，记录一下。<br>原文地址：<a href="http://blog.csdn.net/liuwan1992/article/details/52701475" target="_blank" rel="external">http://blog.csdn.net/liuwan1992/article/details/52701475</a></p>
+<h5 id="先来看下效果，还是很不错的"><a href="#先来看下效果，还是很不错的" class="headerlink" title="先来看下效果，还是很不错的"></a>先来看下效果，还是很不错的</h5><p><img src="http://ozhvdppba.bkt.clouddn.com/date_pick.gif" alt="image"></p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>使用也很简单，将两个自定义类还有xml文件复制到项目中，然后还有color，style，string资源需要复制，<br>然后在项目中初始化，我根据自己的需求，把初始化封装成了工具类，方便调用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by lzl on 2018/1/28.</span><br><span class="line"> * 调用时间选择器</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">public class DatePickerUtil &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 返回当前时间 格式为：yyyy-MM-dd HH:mm</span><br><span class="line">     * @return</span><br><span class="line">     */</span><br><span class="line">    public static String getNowDate()&#123;</span><br><span class="line"></span><br><span class="line">        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm&quot;,Locale.CHINA);</span><br><span class="line">        String now = sdf.format(new Date());</span><br><span class="line">        return now;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 初始化时间选择</span><br><span class="line">     * @param tv_date 传入显示时间的控件</span><br><span class="line">     * @param context 上下文</span><br><span class="line">     * @return 返回时间选择器对象</span><br><span class="line">     */</span><br><span class="line">    public static CustomDatePicker initDatePicker( final TextView tv_date, Context context) &#123;</span><br><span class="line">        CustomDatePicker customDatePicker;</span><br><span class="line"></span><br><span class="line">        String now = getNowDate();</span><br><span class="line">        customDatePicker = new CustomDatePicker(context, new CustomDatePicker.ResultHandler() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void handle(String time) &#123; // 回调接口，获得选中的时间</span><br><span class="line">                tv_date.setText(time.split(&quot; &quot;)[0]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, &quot;1960-01-01 00:00&quot;, now); // 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行</span><br><span class="line">        customDatePicker.showSpecificTime(false); // 不显示时和分</span><br><span class="line">        customDatePicker.setIsLoop(false); // 不允许循环滚动</span><br><span class="line">        return customDatePicker;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在需要调用时间选择器的地方，调用时间选择器的.show方法即可，参数为截止时间。<br><code>customDatePicker.show(DatePickerUtil.getNowDate());</code>    </p>
+<p>源码：<a href="https://github.com/lzlnull/CustomDatePicker" target="_blank" rel="external">https://github.com/lzlnull/CustomDatePicker</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/26/Android-ORM框架GreenDAO初体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1557,7 +1703,7 @@ public void onComplete(SHARE_MEDIA platform, int action, Map&lt;String, String&g
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1642,7 +1788,7 @@ public void onComplete(SHARE_MEDIA platform, int action, Map&lt;String, String&g
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共8.1k字</span>
+  <span class="post-count">博客全站共8.5k字</span>
 </div>
 
         
